@@ -1,0 +1,16 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management   # Usa a imagem oficial com plugin de gerenciamento
+    container_name: financasapi-rabbitmq
+    ports:
+      - "5672:5672"    # Porta padrão para conexões (ex: apps, microservices)
+      - "15672:15672"  # Porta do painel de administração (web UI)
+    environment:
+      RABBITMQ_DEFAULT_USER: admin   # Usuário padrão
+      RABBITMQ_DEFAULT_PASS: admin   # Senha padrão
+    networks:
+      - financasapi_net
+
+networks:
+  financasapi_net:
+    driver: bridge
