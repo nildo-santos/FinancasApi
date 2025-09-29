@@ -1,6 +1,5 @@
 package br.com.cotiinformatica.application;
 
-import br.com.cotiinformatica.domain.dtos.AnaliseRequestDto;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class FinancasController {
         Método para processar a análise financeira
      */
     @PostMapping("analise")
-    public ResponseEntity<?> processarAnalise(@RequestBody AnaliseRequestDto request) {
+    public ResponseEntity<?> processarAnalise() {
 
         //Criando uma mensagem que será enviada para a fila
         var mensagem = """
