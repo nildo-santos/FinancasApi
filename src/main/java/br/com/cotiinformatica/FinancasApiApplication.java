@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FinancasApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinancasApiApplication.class, args);
+
+        SpringApplication.run(FinancasApiApplication.class, args);
 	}
 
 }

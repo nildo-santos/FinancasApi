@@ -1,16 +1,33 @@
 services:
   rabbitmq:
-    image: rabbitmq:3-management   # Usa a imagem oficial com plugin de gerenciamento
+    image: rabbitmq:3-management
     container_name: financasapi-rabbitmq
     ports:
-      - "5672:5672"    # Porta padrão para conexões (ex: apps, microservices)
-      - "15672:15672"  # Porta do painel de administração (web UI)
+      - "5672:5672"
+      - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: admin   # Usuário padrão
-      RABBITMQ_DEFAULT_PASS: admin   # Senha padrão
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - financasapi_net
+
+  postgres:
+    image: postgres:16   # Você pode especificar a versão que preferir
+    container_name: financasapi-postgres
+    ports:
+      - "5435:5432"   # Porta padrão do PostgreSQL
+    environment:
+      POSTGRES_USER: financasuser
+      POSTGRES_PASSWORD: financaspass
+      POSTGRES_DB: financasdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - financasapi_net
 
 networks:
   financasapi_net:
     driver: bridge
+
+volumes:
+  postgres_data:
